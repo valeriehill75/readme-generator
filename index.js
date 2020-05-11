@@ -1,78 +1,73 @@
 var inquirer = require("inquirer");
 var fs = require('fs');
-var markdown = require('./generateMarkdown.js');
+const generateMarkdown = require('./generateMarkdown.js');
 
 inquirer.prompt([
     {
         type: "input",
-        name: "Project Title",
+        name: "title",
         message: "What is your project title?"
     },
     {
-        type: "checkbox",
-        message: "Check which badges you will include:",
-        name: "Badges",
-        choices: [
-          "HTML", 
-          "CSS", 
-          "JavaScript", 
-          "MySQL"
-        ]
-    },
-    {
         type: "input",
-        name: "Description",
+        name: "description",
         message: "Write a description of your project:"
     },
     {
         type: "input",
-        name: "Table of Contents",
+        name: "table",
         message: "Write a Table of Contents:"
     },
     {
         type: "input",
-        name: "Installation Instructions",
+        name: "install",
         message: "Write your installation instructions:"
     },
     {
         type: "input",
-        name: "Usage Intructions",
+        name: "usage",
         message: "Write your usage instructions:"
     },
     {
         type: "input",
-        name: "Licenses",
+        name: "licenses",
         message: "Include any licensing information:"
     },
     {
         type: "input",
-        name: "Contributors",
+        name: "contributors",
         message: "Include any contributor information:"
     },
     {
         type: "input",
-        name: "Tests",
+        name: "tests",
         message: "Include any tests you've written for your application:"
     },
     {
         type: "input",
-        name: "Questions and Feedback",
+        name: "questions",
         message: "Include any links or resources for feedback or questions on your application:"
     },
-  ])
+  ]).then(function(data) {
+
+    console.log(data.title)
+    console.log(data.description)
+    console.log(data.install)
+    console.log(data.usage)
+    console.log(data.licenses)
+    console.log(data.contributors)
+    console.log(data.tests)
+    console.log(data.questions)    
+
+const userInfo = new generateMarkdown()
     
-function writeToFile(fileName, data) {
-    const fileName = "ReadMe.md"
-    if (err) {
-        return console.log(err);
-        }
-
-        console.log("Success!");
-    
+    fs.writeToFile("ReadMe.md", userInfo); {
+    console.log(userInfo)
     }
+})
 
-    function init(markdown) {
+//    function init() {
 
-    }
+//    }
 
-    init()
+//    init()
